@@ -8,5 +8,4 @@ public interface UserInfoService {
     User getUserInfoByName( String yhm);
     List<User> getUserInfoBySimilarName(String yhm);
     List<User> getUserInfoByYx(String yx);
-    String renewUser(Integer yhid,String yhm,String yx,String gxqm);
 }
