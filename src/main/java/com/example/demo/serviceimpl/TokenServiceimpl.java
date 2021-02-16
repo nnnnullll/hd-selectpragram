@@ -2,6 +2,7 @@ package com.example.demo.serviceimpl;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.demo.pojo.Controller;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
 import com.example.demo.service.TokenService;
@@ -29,6 +30,16 @@ public class TokenServiceimpl implements TokenService {
 
         token= JWT.create()
                 .withAudience(String.valueOf(user.getGh()))
+                .withExpiresAt(date) //过期时间配置
+                .sign(Algorithm.HMAC256(user.getMm()));
+        return token;
+    }
+    @Override
+    public String getToken(Controller user, Date date) {
+        String token="";
+
+        token= JWT.create()
+                .withAudience(String.valueOf(user.getGlyh()))
                 .withExpiresAt(date) //过期时间配置
                 .sign(Algorithm.HMAC256(user.getMm()));
         return token;

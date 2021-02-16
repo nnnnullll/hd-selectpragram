@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import com.example.demo.CheckToken;
+import com.example.demo.pojo.Controller;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
 import com.example.demo.service.*;
@@ -22,7 +23,8 @@ public class UserInfoController {
     StudentService studentService;
     @Autowired
     TeacherService teacherService;
-
+    @Autowired
+    ControllerService controllerService;
     @Autowired
     TokenService tokenService;
     @Value("${EXPIRE_TIME}")
@@ -83,7 +85,7 @@ public class UserInfoController {
             }
         }
         else if(field==3){
-            Teacher userForBase3=teacherService.getTeacherInfoByName(String.valueOf(user.get("username")));
+            Controller userForBase3=controllerService.getControllerInfoByName(String.valueOf(user.get("username")));
             if(userForBase3==null){
                 result.put("message","登录失败,该管理员不存在");
                 return result;
@@ -98,7 +100,7 @@ public class UserInfoController {
                     String token = tokenService.getToken(userForBase3,expiresDate);
                     result.put("token", token);
                     result.put("expireTime", EXPIRE_TIME);
-                    result.put("xh", userForBase3.getGh());
+                    result.put("xh", userForBase3.getGlyh());
                     result.put("xm", userForBase3.getXm());
                     return result;
                 }
