@@ -27,4 +27,10 @@ public class NoteController {
     @RequestParam(value = "nr") String nr){    
         return noteservice.addNote(dx, rq, bt, nr);
     }
+
+    @PostMapping("/deletenote")
+    public Integer deletenote(@RequestParam(value = "ggh") Integer ggh) {
+        return noteservice.deleteNote(ggh);
+    }
+    
 }

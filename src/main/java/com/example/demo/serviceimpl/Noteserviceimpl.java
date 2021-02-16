@@ -19,4 +19,9 @@ public class Noteserviceimpl implements Noteservice{
     public Integer addNote(String dx,String rq,String bt,String nr){
         return notemapper.addNote(dx, rq, bt, nr);
     }
+
+    @Override
+    public Integer deleteNote(Integer ggh){
+        return notemapper.deleteNote(ggh);
+    }
 }
