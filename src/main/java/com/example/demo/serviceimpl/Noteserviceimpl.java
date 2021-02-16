@@ -15,4 +15,8 @@ public class Noteserviceimpl implements Noteservice{
     public Note[] getNotes(){
         return notemapper.getNotes();
     }
+    @Override
+    public Integer addNote(String dx,String rq,String bt,String nr){
+        return notemapper.addNote(dx, rq, bt, nr);
+    }
 }
