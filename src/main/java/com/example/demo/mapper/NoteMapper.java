@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface NoteMapper {
-    @Select("SELECT * FROM `note` where 'note'.sc=0 ORDER BY `note`.rq DESC")
+    @Select("SELECT * FROM `note` where `note`.sc=0 ORDER BY `note`.rq DESC")
     Note[] getNotes();
 
     @Insert("INSERT INTO `note` (dx,rq,bt,nr,sc) VALUES ( #{dx}, #{rq}, #{bt},#{nr}, 0) ")
