@@ -18,4 +18,10 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher getTeacherInfoById(Integer gh) {
         return  teacherMapper.getTeacherInfoById(gh);
     }
+
+    @Override
+    public void renewTeacherInfo(Integer xh, String xm, String mm, Integer yxh, String xl, String zc, String xb, String yx, String qq, String sjh, String zwjs, String jglb, String szyjs, String bgsdh, String bgsdz) {
+        teacherMapper.renewTeacherInfo(xh, xm, mm, yxh, xl, zc, xb, yx, qq, sjh, zwjs, jglb, szyjs, bgsdh, bgsdz);
+    }
+
 }

@@ -39,7 +39,15 @@ public class UserInfoController {
         return result;
     }
 
-    //修改更新用户名、个性签名以及邮箱信息
+    @PostMapping("/getTeacherById")
+    public Map getTeacherById(@RequestBody Map user){
+        Map result=new HashMap();
+        Integer gh=Integer.parseInt(String.valueOf(user.get("gh")));
+        result.put("res",teacherService.getTeacherInfoById(gh));
+        return result;
+    }
+
+    //修改更新用户名、邮箱等信息
     @PostMapping("/renewstu")
     public String renew(@RequestBody Map user) {
         try{
@@ -55,6 +63,34 @@ public class UserInfoController {
             String sjh=String.valueOf(user.get("sjh"));
             String zwjs=String.valueOf(user.get("zwjs"));
             return studentService.renewStudentInfo(xh,xm,mm,yxh,zy,nj,xb,yx,qq,sjh,zwjs);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return "fail";
+        }
+    }
+
+    //修改更新用户名、邮箱等信息
+    @PostMapping("/renewTeacher")
+    public String renewTeacher(@RequestBody Map user) {
+        try{
+            Integer xh=Integer.parseInt(String.valueOf(user.get("gh")));
+            Integer yxh=Integer.parseInt(String.valueOf(user.get("yxh")));
+            String xm=String.valueOf(user.get("xm"));
+            String mm=String.valueOf(user.get("mm"));
+            String xl=String.valueOf(user.get("xl"));
+            String zc=String.valueOf(user.get("zc"));
+            String xb=String.valueOf(user.get("xb"));
+            String yx=String.valueOf(user.get("yx"));
+            String qq=String.valueOf(user.get("qq"));
+            String sjh=String.valueOf(user.get("sjh"));
+            String zwjs=String.valueOf(user.get("zwjs"));
+            String jglb=String.valueOf(user.get("jglb"));
+            String szyjs=String.valueOf(user.get("szyjs"));
+            String bgsdh=String.valueOf(user.get("bgsdh"));
+            String bgsdz=String.valueOf(user.get("bgsdz"));
+            teacherService.renewTeacherInfo(xh,xm,mm,yxh,xl,zc,xb,yx,qq,sjh,zwjs,jglb,szyjs,bgsdh,bgsdz);
+            return "success";
         }
         catch (Exception e){
             System.out.println(e);
