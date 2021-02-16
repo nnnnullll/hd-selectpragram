@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
-import com.example.demo.pojo.User;
 import com.example.demo.service.TokenService;
 import org.springframework.stereotype.Service;
 

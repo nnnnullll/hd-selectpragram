@@ -1,22 +1,16 @@
 package com.example.demo.controller;
 import com.example.demo.CheckToken;
-import com.example.demo.PassToken;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
-import com.example.demo.pojo.User;
 import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
-
-
-import java.util.*;
 
 
 @CrossOrigin
@@ -28,18 +22,12 @@ public class UserInfoController {
     StudentService studentService;
     @Autowired
     TeacherService teacherService;
-    @Autowired
-    UserInfoService userService;
+
     @Autowired
     TokenService tokenService;
     @Value("${EXPIRE_TIME}")
     private String EXPIRE_TIME;
-    @CheckToken
-    @GetMapping("/getUserByName/{userName}")
-    public String getUser(@PathVariable("userName") String userName) {
-        User userInfoByName = userService.getUserInfoByName(userName);
-        return userInfoByName.toString();
-    }
+
 
 
     //登录
