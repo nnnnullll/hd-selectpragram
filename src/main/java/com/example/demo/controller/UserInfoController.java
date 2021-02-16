@@ -4,6 +4,7 @@ import com.example.demo.pojo.Controller;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
 import com.example.demo.service.*;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -30,7 +31,36 @@ public class UserInfoController {
     @Value("${EXPIRE_TIME}")
     private String EXPIRE_TIME;
 
+    @PostMapping("/getStuById")
+    public Map getStuById(@RequestBody Map user){
+        Map result=new HashMap();
+        Integer xh=Integer.parseInt(String.valueOf(user.get("xh")));
+        result.put("res",studentService.getStudentInfoById(xh));
+        return result;
+    }
 
+    //修改更新用户名、个性签名以及邮箱信息
+    @PostMapping("/renewstu")
+    public String renew(@RequestBody Map user) {
+        try{
+            Integer xh=Integer.parseInt(String.valueOf(user.get("xh")));
+            Integer yxh=Integer.parseInt(String.valueOf(user.get("yxh")));
+            String xm=String.valueOf(user.get("xm"));
+            String mm=String.valueOf(user.get("mm"));
+            String zy=String.valueOf(user.get("zy"));
+            String nj=String.valueOf(user.get("nj"));
+            String xb=String.valueOf(user.get("xb"));
+            String yx=String.valueOf(user.get("yx"));
+            String qq=String.valueOf(user.get("qq"));
+            String sjh=String.valueOf(user.get("sjh"));
+            String zwjs=String.valueOf(user.get("zwjs"));
+            return studentService.renewStudentInfo(xh,xm,mm,yxh,zy,nj,xb,yx,qq,sjh,zwjs);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return "fail";
+        }
+    }
 
     //登录
     @PostMapping("/login")
