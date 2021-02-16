@@ -12,16 +12,7 @@ import java.util.Date;
 
 @Service
 public class TokenServiceimpl implements TokenService {
-    @Override
-    public String getToken(User user, Date date) {
-        String token="";
 
-        token= JWT.create()
-                .withAudience(String.valueOf(user.getYhid()))
-                .withExpiresAt(date) //过期时间配置
-                .sign(Algorithm.HMAC256(user.getMm()));
-        return token;
-    }
     @Override
     public String getToken(Student user, Date date) {
         String token="";

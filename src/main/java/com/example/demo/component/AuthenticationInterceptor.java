@@ -8,6 +8,10 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.example.demo.CheckToken;
 import com.example.demo.PassToken;
+import com.example.demo.pojo.Student;
+import com.example.demo.pojo.Teacher;
+import com.example.demo.service.StudentService;
+import com.example.demo.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,7 +22,9 @@ import java.lang.reflect.Method;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
-    UserInfoService userService;
+    StudentService studentService;
+    @Autowired
+    TeacherService teacherService;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
@@ -51,21 +57,39 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("您的token已坏掉了,请重新登录获取token");
                 }
-                User user = userService.getUserInfoById(Integer.valueOf(userId));
-                if (user == null) {
+                Student user1 = studentService.getStudentInfoById(Integer.valueOf(userId));
+                Teacher user2 = teacherService.getTeacherInfoById(Integer.valueOf(userId));
+                if (user1==null&& user2==null) {
                     throw new RuntimeException("用户不存在,请重新登录");
                 }
-                // 验证 token
-                JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getMm())).build();
-                try {
-                    jwtVerifier.verify(token);
+                if(user1==null){
+                    // 验证 token
+                    JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user2.getMm())).build();
+                    try {
+                        jwtVerifier.verify(token);
 
-                }catch (InvalidClaimException e){
-                    throw new RuntimeException("无效token,请重新登录获取token");
-                }catch (TokenExpiredException e){
-                    throw new RuntimeException("token已过期,请重新登录获取token");
-                } catch (JWTVerificationException e) {
-                    throw new RuntimeException(e.getMessage());
+                    }catch (InvalidClaimException e){
+                        throw new RuntimeException("无效token,请重新登录获取token");
+                    }catch (TokenExpiredException e){
+                        throw new RuntimeException("token已过期,请重新登录获取token");
+                    } catch (JWTVerificationException e) {
+                        throw new RuntimeException(e.getMessage());
+                    }
+                }
+
+                if(user2==null){
+                    // 验证 token
+                    JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user1.getMm())).build();
+                    try {
+                        jwtVerifier.verify(token);
+
+                    }catch (InvalidClaimException e){
+                        throw new RuntimeException("无效token,请重新登录获取token");
+                    }catch (TokenExpiredException e){
+                        throw new RuntimeException("token已过期,请重新登录获取token");
+                    } catch (JWTVerificationException e) {
+                        throw new RuntimeException(e.getMessage());
+                    }
                 }
                 return true;
             }

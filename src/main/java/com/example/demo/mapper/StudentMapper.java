@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Select;
 public interface StudentMapper {
     @Select("SELECT * FROM student WHERE xm=#{xm}")
     Student getStudentInfoByName(String xm);
+    @Select("SELECT * FROM student WHERE xh=#{xh}")
+    Student getStudentInfoById(Integer xh);
 }
