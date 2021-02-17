@@ -14,8 +14,8 @@ public interface TitleMapper {
     @Select("SELECT * FROM title where sc=0 AND kth=#{kth} ORDER BY fbsj DESC")
     Title getTitleBykth(@Param("kth") Integer kth);
 
-    @Insert("INSERT INTO `title` (yxh,gh,xbrs,ktm,ktjs,ktlb,ktxz,ktly,sfxkt,zt,fbsj,sc) VALUES ( #{yxh}, #{gh}, #{xbrs},#{ktm},#{ktjs},#{ktlb},#{ktxz},#{ktly},#{sfxkt},#{zt},#{fbsj}, 0) ")
-    Integer addNote(
+    @Insert("INSERT INTO `title` (yxh,gh,xbrs,ktm,ktjs,ktlb,ktxz,ktly,sfxkt,zt,fbsj,sc) VALUES ( #{yxh}, #{gh}, #{xbrs},#{ktm},#{ktjs},#{ktlb},#{ktxz},#{ktly},#{sfxkt},0,#{fbsj}, 0) ")
+    Integer addTitle(
         @Param("yxh") Integer yxh,
         @Param("gh") Integer gh,
         @Param("xbrs") Integer xbrs,
@@ -25,9 +25,7 @@ public interface TitleMapper {
         @Param("ktxz") String ktxz,
         @Param("ktly") String ktly,
         @Param("sfxkt") Integer sfxkt,
-        @Param("zt") Integer zt,
-        @Param("fbsj") String fbsj,
-        @Param("sc") Integer sc);
+        @Param("fbsj") String fbsj);
 
     // @Update("update `note` set `note`.sc=1  where `note`.ggh=#{ggh}")
     // Integer deleteNote(@Param("ggh") Integer ggh);

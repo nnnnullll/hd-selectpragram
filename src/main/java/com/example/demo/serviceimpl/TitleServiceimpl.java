@@ -11,7 +11,14 @@ import org.springframework.stereotype.Service;
 public class TitleServiceimpl implements TitleService{
     @Autowired
     TitleMapper titleMapper;
+    @Override
     public Title getTitleBykth(Integer kth){
         return titleMapper.getTitleBykth(kth);
     }
+    @Override
+    public Integer addTitle(Integer yxh,Integer gh,Integer xbrs,String ktm,String ktjs,String ktlb,String ktxz,String ktly,Integer sfxkt,String fbsj){
+        return titleMapper.addTitle(yxh, gh, xbrs, ktm, ktjs, ktlb, ktxz, ktly, sfxkt, fbsj);
+    }
+
+    
 }

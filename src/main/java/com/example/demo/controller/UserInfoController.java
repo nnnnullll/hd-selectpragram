@@ -88,6 +88,7 @@ public class UserInfoController {
                     result.put("expireTime", EXPIRE_TIME);
                     result.put("xh", userForBase.getXh());
                     result.put("xm", userForBase.getXm());
+                    result.put("yxh", userForBase.getYxh());
                     return result;
                 }
             }
@@ -110,6 +111,7 @@ public class UserInfoController {
                     result.put("expireTime", EXPIRE_TIME);
                     result.put("xh", userForBase2.getGh());
                     result.put("xm", userForBase2.getXm());
+                    result.put("yxh", userForBase2.getYxh());
                     return result;
                 }
             }
