@@ -39,7 +39,23 @@ public class UserInfoController {
         return result;
     }
 
-    //修改更新用户名、个性签名以及邮箱信息
+    @PostMapping("/getTeacherById")
+    public Map getTeacherById(@RequestBody Map user){
+        Map result=new HashMap();
+        Integer gh=Integer.parseInt(String.valueOf(user.get("gh")));
+        result.put("res",teacherService.getTeacherInfoById(gh));
+        return result;
+    }
+
+    @PostMapping("/getTeacherByName")
+    public Map getTeacherByName(@RequestBody Map user){
+        Map result=new HashMap();
+        String xm=(String.valueOf(user.get("xm")));
+        result.put("res",teacherService.getTeacherInfoByName(xm));
+        return result;
+    }
+
+    //修改更新用户名、邮箱等信息
     @PostMapping("/renewstu")
     public String renew(@RequestBody Map user) {
         try{
@@ -62,6 +78,34 @@ public class UserInfoController {
         }
     }
 
+    //修改更新用户名、邮箱等信息
+    @PostMapping("/renewTeacher")
+    public String renewTeacher(@RequestBody Map user) {
+        try{
+            Integer xh=Integer.parseInt(String.valueOf(user.get("gh")));
+            Integer yxh=Integer.parseInt(String.valueOf(user.get("yxh")));
+            String xm=String.valueOf(user.get("xm"));
+            String mm=String.valueOf(user.get("mm"));
+            String xl=String.valueOf(user.get("xl"));
+            String zc=String.valueOf(user.get("zc"));
+            String xb=String.valueOf(user.get("xb"));
+            String yx=String.valueOf(user.get("yx"));
+            String qq=String.valueOf(user.get("qq"));
+            String sjh=String.valueOf(user.get("sjh"));
+            String zwjs=String.valueOf(user.get("zwjs"));
+            String jglb=String.valueOf(user.get("jglb"));
+            String szyjs=String.valueOf(user.get("szyjs"));
+            String bgsdh=String.valueOf(user.get("bgsdh"));
+            String bgsdz=String.valueOf(user.get("bgsdz"));
+            teacherService.renewTeacherInfo(xh,xm,mm,yxh,xl,zc,xb,yx,qq,sjh,zwjs,jglb,szyjs,bgsdh,bgsdz);
+            return "success";
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return "fail";
+        }
+    }
+
     //登录
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody Map<String,Object> user){
@@ -69,7 +113,7 @@ public class UserInfoController {
         Integer field=Integer.parseInt(String.valueOf(user.get("kind")));
         System.out.println("类别："+field);
         if(field==1) {
-            Student userForBase=studentService.getStudentInfoByName(String.valueOf(user.get("username")));
+            Student userForBase=studentService.getStudentInfoById(Integer.parseInt(String.valueOf(user.get("username"))));
             if(userForBase==null){
                 result.put("message","登录失败,该生不存在");
                 return result;
@@ -94,7 +138,7 @@ public class UserInfoController {
             }
         }
         else if(field==2){
-            Teacher userForBase2=teacherService.getTeacherInfoByName(String.valueOf(user.get("username")));
+            Teacher userForBase2=teacherService.getTeacherInfoById(Integer.parseInt(String.valueOf(user.get("username"))));
             if(userForBase2==null){
                 result.put("message","登录失败,该教师不存在");
                 return result;
@@ -117,7 +161,7 @@ public class UserInfoController {
             }
         }
         else if(field==3){
-            Controller userForBase3=controllerService.getControllerInfoByName(String.valueOf(user.get("username")));
+            Controller userForBase3=controllerService.getControllerInfoById(Integer.parseInt(String.valueOf(user.get("username"))));
             if(userForBase3==null){
                 result.put("message","登录失败,该管理员不存在");
                 return result;
