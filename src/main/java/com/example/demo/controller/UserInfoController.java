@@ -153,7 +153,7 @@ public class UserInfoController {
                     String token = tokenService.getToken(userForBase2,expiresDate);
                     result.put("token", token);
                     result.put("expireTime", EXPIRE_TIME);
-                    result.put("xh", userForBase2.getGh());
+                    result.put("gh", userForBase2.getGh());
                     result.put("xm", userForBase2.getXm());
                     result.put("yxh", userForBase2.getYxh());
                     return result;
@@ -176,7 +176,7 @@ public class UserInfoController {
                     String token = tokenService.getToken(userForBase3,expiresDate);
                     result.put("token", token);
                     result.put("expireTime", EXPIRE_TIME);
-                    result.put("xh", userForBase3.getGlyh());
+                    result.put("glyh", userForBase3.getGlyh());
                     result.put("xm", userForBase3.getXm());
                     return result;
                 }
