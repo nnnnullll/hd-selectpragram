@@ -2,10 +2,10 @@ package com.example.demo.pojo;
 
 public class Note {
     private int ggh;
-    private String dx;
-    private String rq;
+    private String dx;//    对象
+    private String rq;//    日期
     private String bt;
-    private String nr;
+    private String nr;//    内容
 
     public int getGgh() {
         return ggh;
@@ -47,5 +47,5 @@ public class Note {
         this.nr = nr;
     }
 
-    
+
 }
