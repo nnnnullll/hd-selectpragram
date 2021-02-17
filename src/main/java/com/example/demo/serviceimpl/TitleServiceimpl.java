@@ -20,5 +20,25 @@ public class TitleServiceimpl implements TitleService{
         return titleMapper.addTitle(yxh, gh, xbrs, ktm, ktjs, ktlb, ktxz, ktly, sfxkt, fbsj);
     }
 
+    @Override
+    public Integer upTitle(Integer kth,Integer xbrs,String ktm,String ktjs,String ktlb,String ktxz,String ktly,Integer sfxkt,String fbsj){
+        return titleMapper.upTitle(kth,xbrs, ktm, ktjs, ktlb, ktxz, ktly, sfxkt, fbsj);
+    }
+    
+
+    @Override
+    public Title[] getTitleBygh(Integer gh){
+        return titleMapper.getTitleBygh(gh);
+    }
+
+    @Override
+    public Title[] getBadTitleBygh(Integer gh){
+        return titleMapper.getBadTitleBygh(gh);
+    }
+    
+    @Override
+    public Integer deletekt(Integer kth){
+        return titleMapper.deletekt(kth);
+    }
     
 }

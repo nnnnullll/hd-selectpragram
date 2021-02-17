@@ -16,8 +16,20 @@ public class TitleController {
     @Autowired
     TitleService titleService;
     @PostMapping("/gettitlebykth")
-    public Title getTitleByggh(@RequestParam(value = "kth") Integer kth) {
+    public Title getTitleBykth(@RequestParam(value = "kth") Integer kth) {
         return titleService.getTitleBykth(kth);
+    }
+    @PostMapping("/gettitlebygh")
+    public Title[] getTitleBygh(@RequestParam(value = "gh") Integer gh) {
+        return titleService.getTitleBygh(gh);
+    }
+    @PostMapping("/getbadtitlebygh")
+    public Title[] getBadTitleBygh(@RequestParam(value = "gh") Integer gh) {
+        return titleService.getBadTitleBygh(gh);
+    }
+    @PostMapping("/deletetitle")
+    public Integer deleteTitle(@RequestParam(value = "kth") Integer kth) {
+        return titleService.deletekt(kth);
     }
     @PostMapping("/addtitle")
     public Integer addTitle(
@@ -31,10 +43,20 @@ public class TitleController {
         @RequestParam(value = "ktly") String ktly,
         @RequestParam(value = "sfxkt") Integer sfxkt,
         @RequestParam(value = "fbsj") String fbsj){
-        System.out.println(yxh);
-        System.out.println(gh);
-        System.out.println(xbrs);
-        System.out.println(ktm);
         return titleService.addTitle(yxh, gh, xbrs, ktm, ktjs, ktlb, ktxz, ktly, sfxkt, fbsj);
+    }
+
+    @PostMapping("/uptitle")
+    public Integer upTitle(
+        @RequestParam(value = "kth") Integer kth,
+        @RequestParam(value = "xbrs") Integer xbrs,
+        @RequestParam(value = "ktm") String ktm,
+        @RequestParam(value = "ktjs") String ktjs,
+        @RequestParam(value = "ktlb") String ktlb,
+        @RequestParam(value = "ktxz") String ktxz,
+        @RequestParam(value = "ktly") String ktly,
+        @RequestParam(value = "sfxkt") Integer sfxkt,
+        @RequestParam(value = "fbsj") String fbsj){
+        return titleService.upTitle(kth,xbrs, ktm, ktjs, ktlb, ktxz, ktly, sfxkt, fbsj);
     }
 }
