@@ -47,6 +47,14 @@ public class UserInfoController {
         return result;
     }
 
+    @PostMapping("/getTeacherByName")
+    public Map getTeacherByName(@RequestBody Map user){
+        Map result=new HashMap();
+        String xm=(String.valueOf(user.get("xm")));
+        result.put("res",teacherService.getTeacherInfoByName(xm));
+        return result;
+    }
+
     //修改更新用户名、邮箱等信息
     @PostMapping("/renewstu")
     public String renew(@RequestBody Map user) {
@@ -105,7 +113,7 @@ public class UserInfoController {
         Integer field=Integer.parseInt(String.valueOf(user.get("kind")));
         System.out.println("类别："+field);
         if(field==1) {
-            Student userForBase=studentService.getStudentInfoByName(String.valueOf(user.get("username")));
+            Student userForBase=studentService.getStudentInfoById(Integer.parseInt(String.valueOf(user.get("username"))));
             if(userForBase==null){
                 result.put("message","登录失败,该生不存在");
                 return result;
@@ -129,7 +137,7 @@ public class UserInfoController {
             }
         }
         else if(field==2){
-            Teacher userForBase2=teacherService.getTeacherInfoByName(String.valueOf(user.get("username")));
+            Teacher userForBase2=teacherService.getTeacherInfoById(Integer.parseInt(String.valueOf(user.get("username"))));
             if(userForBase2==null){
                 result.put("message","登录失败,该教师不存在");
                 return result;
@@ -151,7 +159,7 @@ public class UserInfoController {
             }
         }
         else if(field==3){
-            Controller userForBase3=controllerService.getControllerInfoByName(String.valueOf(user.get("username")));
+            Controller userForBase3=controllerService.getControllerInfoById(Integer.parseInt(String.valueOf(user.get("username"))));
             if(userForBase3==null){
                 result.put("message","登录失败,该管理员不存在");
                 return result;
