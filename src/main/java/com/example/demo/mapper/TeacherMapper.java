@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
+import com.sun.tools.javac.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -13,6 +14,7 @@ public interface TeacherMapper {
     Teacher getTeacherInfoByName(String xm);
     @Select("SELECT * FROM teacher WHERE gh=#{gh}")
     Teacher getTeacherInfoById(Integer gh);
+
     @Update("update teacher set xm=#{xm},mm=#{mm},yxh=#{yxh},xl=#{xl},zc=#{zc},xb=#{xb},yx=#{yx},qq=#{qq}," +
             "sjh=#{sjh},zwjs=#{zwjs},jglb=#{jglb},szyjs=#{szyjs},bgsdh=#{bgsdh},bgsdz=#{bgsdz} where gh=#{gh}")
     void renewTeacherInfo(@Param("gh") Integer xh, @Param("xm") String xm, @Param("mm")String mm, @Param("yxh") Integer yxh,

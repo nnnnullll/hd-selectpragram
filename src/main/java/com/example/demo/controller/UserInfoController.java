@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
-
+    @Autowired
+    TitleService titleService;
     @Autowired
     StudentService studentService;
     @Autowired
@@ -30,6 +31,17 @@ public class UserInfoController {
     TokenService tokenService;
     @Value("${EXPIRE_TIME}")
     private String EXPIRE_TIME;
+
+    @PostMapping("/match")
+    public void match(@RequestBody Map user){
+       // Map result=new HashMap();
+        Integer glyh=Integer.parseInt(String.valueOf(user.get("glyh")));
+        Controller controller=controllerService.getControllerInfoById(glyh);
+        if(controller!=null){
+            titleService.matchUnselected();
+        }
+        //return result;
+    }
 
     //重置账户密码为学号/工号/管理员号
     @PostMapping("/reset")
