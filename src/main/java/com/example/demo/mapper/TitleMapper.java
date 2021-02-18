@@ -22,6 +22,9 @@ public interface TitleMapper {
     @Select("select kth,gh from title where sc=0 and zt=1")
     List<UnSelKt> getUnselectedTitle();
 
+    @Update("update title set zt=2 where kth=#{kth} and sc=0")
+    void resetzt (@Param("kth")Integer kth);
+
     // 通过工号找审核前的课题 
     @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=0 ORDER BY fbsj DESC")
     Title[] getTitleBygh(@Param("gh") Integer gh);

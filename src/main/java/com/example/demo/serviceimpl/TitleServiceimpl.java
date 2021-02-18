@@ -28,9 +28,9 @@ public class TitleServiceimpl implements TitleService{
         Integer len1=unselectedStu.size();
         Integer len2=unselectedTitle.size();
         while (i<len1&&i<len2){
-            System.out.println(unselectedStu.get(i));
-            System.out.println(unselectedTitle.get(i));
             lastPickMapper.addLastPick(unselectedTitle.get(i).getGh(),unselectedStu.get(i),unselectedTitle.get(i).getKth());
+            studentMapper.renewxz(unselectedStu.get(i));
+            titleMapper.resetzt(unselectedTitle.get(i).getKth());
             i++;
         }
     }
