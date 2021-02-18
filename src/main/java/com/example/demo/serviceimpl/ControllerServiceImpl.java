@@ -18,4 +18,8 @@ public class ControllerServiceImpl implements ControllerService {
     public Controller getControllerInfoById(Integer glyh){
         return controllerMapper.getControllerInfoById(glyh);
     }
+    @Override
+    public void resetPwd(Integer glyh,String mm){
+        controllerMapper.resetpwd(glyh,mm);
+    }
 }

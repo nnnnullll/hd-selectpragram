@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
-
+    @Autowired
+    TitleService titleService;
     @Autowired
     StudentService studentService;
     @Autowired
@@ -30,6 +31,37 @@ public class UserInfoController {
     TokenService tokenService;
     @Value("${EXPIRE_TIME}")
     private String EXPIRE_TIME;
+
+    @PostMapping("/match")
+    public void match(@RequestBody Map user){
+       // Map result=new HashMap();
+        Integer glyh=Integer.parseInt(String.valueOf(user.get("glyh")));
+        Controller controller=controllerService.getControllerInfoById(glyh);
+        if(controller!=null){
+            titleService.matchUnselected();
+        }
+        //return result;
+    }
+
+    //重置账户密码为学号/工号/管理员号
+    @PostMapping("/reset")
+    public void reset(@RequestBody Map<String,Object> user){
+        Integer field=Integer.parseInt(String.valueOf(user.get("kind")));
+        System.out.println("类别："+field);
+        String mm=String.valueOf(user.get("password"));
+        if(field==1) {
+            Integer xh=Integer.parseInt(String.valueOf(user.get("username")));
+            studentService.resetpwd(xh,mm);
+        }
+        else if(field==2){
+            Integer gh=Integer.parseInt(String.valueOf(user.get("username")));
+            teacherService.resetpwd(gh,mm);
+        }
+        else if(field==3){
+            Integer glyh=Integer.parseInt(String.valueOf(user.get("username")));
+            controllerService.resetPwd(glyh,mm);
+        }
+    }
 
     @PostMapping("/getStuById")
     public Map getStuById(@RequestBody Map user){

@@ -1,18 +1,29 @@
 package com.example.demo.mapper;
 
+import com.example.demo.pojo.LastPick;
 import com.example.demo.pojo.Note;
 import com.example.demo.pojo.Title;
 
+
+import com.example.demo.pojo.UnSelKt;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 @Mapper
 public interface TitleMapper {
     @Select("SELECT * FROM title where sc=0 AND kth=#{kth} ORDER BY fbsj DESC")
     Title getTitleBykth(@Param("kth") Integer kth);
+
+    @Select("select kth,gh from title where sc=0 and zt=1")
+    List<UnSelKt> getUnselectedTitle();
+
+    @Update("update title set zt=2 where kth=#{kth} and sc=0")
+    void resetzt (@Param("kth")Integer kth);
 
     // 通过工号找审核前的课题 
     @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=0 ORDER BY fbsj DESC")

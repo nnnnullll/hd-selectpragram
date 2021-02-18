@@ -9,6 +9,6 @@ public interface TitleService {
     Title[] getTitleBygh(Integer gh);
     Title[] getBadTitleBygh(Integer gh);
     Integer deletekt(Integer kth);
-
+    void matchUnselected();
 }
 
