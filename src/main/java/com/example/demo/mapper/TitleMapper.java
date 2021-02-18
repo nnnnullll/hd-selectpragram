@@ -18,8 +18,8 @@ public interface TitleMapper {
     @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=0 ORDER BY fbsj DESC")
     Title[] getTitleBygh(@Param("gh") Integer gh);
      // 通过工号找审核不通过的课题 
-     @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=3 ORDER BY fbsj DESC")
-     Title[] getBadTitleBygh(@Param("gh") Integer gh);
+    @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=3 ORDER BY fbsj DESC")
+    Title[] getBadTitleBygh(@Param("gh") Integer gh);
 
     @Update("update `title` set `title`.sc=1  where `title`.kth=#{kth}")
     Integer deletekt(@Param("kth") Integer kth);

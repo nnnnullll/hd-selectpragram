@@ -3,6 +3,8 @@ package com.example.demo.mapper;
 import com.example.demo.pojo.Relist;
 
 import com.example.demo.pojo.Teacher;
+
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -25,5 +27,6 @@ public interface RelistMapper {
     @Update("update prepick set xh=#{xh} where yxid=#{yxid}")
     void updateStudent(@Param("xh") Integer xh, @Param("yxid") Integer yxid);
 
+   
 
 }
