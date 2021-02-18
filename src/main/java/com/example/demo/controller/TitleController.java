@@ -19,6 +19,24 @@ public class TitleController {
     public Title getTitleBykth(@RequestParam(value = "kth") Integer kth) {
         return titleService.getTitleBykth(kth);
     }
+    @PostMapping("/getlastTitleidByxh")
+    public Integer getlastTitleidByxh(@RequestParam(value = "xh") Integer xh) {
+        try {
+            return titleService.getlastTitleidByxh(xh);
+        } catch (Exception e) {
+            return 0;
+        }
+        
+    }
+    @PostMapping("/getpreTitleidByxh")
+    public Integer getpreTitleidByxh(@RequestParam(value = "xh") Integer xh) {
+        try {
+            return titleService.getpreTitleidByxh(xh);
+        } catch (Exception e) {
+            return 0;
+        }
+        
+    }
     @PostMapping("/gettitlebygh")
     public Title[] getTitleBygh(@RequestParam(value = "gh") Integer gh) {
         return titleService.getTitleBygh(gh);

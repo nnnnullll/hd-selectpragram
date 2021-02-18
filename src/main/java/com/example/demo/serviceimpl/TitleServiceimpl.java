@@ -62,5 +62,12 @@ public class TitleServiceimpl implements TitleService{
     public Integer deletekt(Integer kth){
         return titleMapper.deletekt(kth);
     }
-    
+    @Override
+    public Integer getlastTitleidByxh(Integer xh){
+        return titleMapper.getlastTitleidByxh(xh);
+    }
+    @Override
+    public Integer getpreTitleidByxh(Integer xh){
+        return titleMapper.getpreTitleidByxh(xh);
+    }
 }

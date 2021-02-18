@@ -19,6 +19,12 @@ public interface TitleMapper {
     @Select("SELECT * FROM title where sc=0 AND kth=#{kth} ORDER BY fbsj DESC")
     Title getTitleBykth(@Param("kth") Integer kth);
 
+    @Select("SELECT kth FROM `lastpick` where xh=#{xh}")
+    Integer getlastTitleidByxh(@Param("xh") Integer xh);
+
+    @Select("SELECT kth FROM `prepick` where xh=#{xh}")
+    Integer getpreTitleidByxh(@Param("xh") Integer xh);
+
     @Select("select kth,gh from title where sc=0 and zt=1")
     List<UnSelKt> getUnselectedTitle();
 

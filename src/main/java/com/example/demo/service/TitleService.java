@@ -10,5 +10,7 @@ public interface TitleService {
     Title[] getBadTitleBygh(Integer gh);
     Integer deletekt(Integer kth);
     void matchUnselected();
+    Integer getlastTitleidByxh(Integer xh);
+    Integer getpreTitleidByxh(Integer xh);
 }
 
