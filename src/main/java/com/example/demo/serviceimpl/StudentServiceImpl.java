@@ -25,4 +25,8 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.renewStudentInfo(xh, xm, mm, yxh, zy, nj, xb, yx, qq, sjh, zwjs);
         return "success!!!";
     }
+    @Override
+    public void resetpwd (Integer xh,String mm){
+        studentMapper.resetpwd(xh, mm);
+    }
 }

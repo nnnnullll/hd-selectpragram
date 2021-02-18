@@ -19,4 +19,6 @@ public interface TeacherMapper {
                           @Param("xl")String xl,@Param("zc")String zc, @Param("xb") String xb, @Param("yx")String yx,
                           @Param("qq")String qq, @Param("sjh") String sjh, @Param("zwjs") String zwjs,@Param("jglb")String jglb,
                           @Param("szyjs")String szyjs,@Param("bgsdh")String bgsdh,@Param("bgsdz")String bgsdz);
+    @Update("update teacher set mm=#{mm} where gh=#{gh}")
+    void resetpwd (@Param("gh")Integer gh,@Param("mm")String mm);
 }

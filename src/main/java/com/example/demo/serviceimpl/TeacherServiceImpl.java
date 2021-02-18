@@ -23,5 +23,9 @@ public class TeacherServiceImpl implements TeacherService {
     public void renewTeacherInfo(Integer xh, String xm, String mm, Integer yxh, String xl, String zc, String xb, String yx, String qq, String sjh, String zwjs, String jglb, String szyjs, String bgsdh, String bgsdz) {
         teacherMapper.renewTeacherInfo(xh, xm, mm, yxh, xl, zc, xb, yx, qq, sjh, zwjs, jglb, szyjs, bgsdh, bgsdz);
     }
+    @Override
+    public void resetpwd (Integer gh,String mm){
+        teacherMapper.resetpwd(gh,mm);
+    }
 
 }
