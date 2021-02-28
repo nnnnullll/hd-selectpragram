@@ -16,6 +16,10 @@ public class Noteserviceimpl implements Noteservice{
         return notemapper.getNotes();
     }
     @Override
+    public Note[] getNotet(){
+        return notemapper.getNotet();
+    }
+    @Override
     public Integer addNote(String dx,String rq,String bt,String nr){
         return notemapper.addNote(dx, rq, bt, nr);
     }

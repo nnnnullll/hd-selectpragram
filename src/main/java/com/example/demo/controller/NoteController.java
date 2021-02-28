@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class NoteController {
     @Autowired
     Noteservice noteservice;
-    @PostMapping("/getnote")
-    public Note[] getnote() {
+    @PostMapping("/getnotes")
+    public Note[] getnotes() {
         return noteservice.getNotes();
+    }
+    @PostMapping("/getnotet")
+    public Note[] getnotet() {
+        return noteservice.getNotet();
     }
     // http://localhost:8010/addnote?dx=学生&bt=测试标题&nr=测试内容&rq=2000-01-02
     @PostMapping("/addnote")
