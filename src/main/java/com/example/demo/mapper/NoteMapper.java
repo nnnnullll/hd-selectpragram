@@ -11,6 +11,9 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface NoteMapper {
     @Select("SELECT * FROM `note` where `note`.sc=0 and `note`.dx='学生' ORDER BY `note`.rq DESC")
+    Note[] getNote();
+
+    @Select("SELECT * FROM `note` where `note`.sc=0 and `note`.dx='学生' ORDER BY `note`.rq DESC")
     Note[] getNotes();
 
     @Select("SELECT * FROM `note` where `note`.sc=0 and `note`.dx='老师' ORDER BY `note`.rq DESC")

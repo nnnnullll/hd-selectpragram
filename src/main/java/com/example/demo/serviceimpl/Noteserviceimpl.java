@@ -12,6 +12,10 @@ public class Noteserviceimpl implements Noteservice{
     @Autowired
     NoteMapper notemapper;
     @Override
+    public Note[] getNote(){
+        return notemapper.getNote();
+    }
+    @Override
     public Note[] getNotes(){
         return notemapper.getNotes();
     }
