@@ -20,9 +20,28 @@ public class PreregistServiceImpl implements PreregistService {
     }
 
     @Override
-    public void updateStudent(Integer xh, Integer yxid) {
-        relistMapper.updateStudent(xh,yxid);
+    public Integer getMyselect(Integer xh) {
+        return relistMapper.getMyselect(xh);
+    }
 
+    @Override
+    public Integer studentSign1(Integer kth, Integer gh, Integer xh) {
+        return relistMapper.studentSign1(kth,gh,xh);
+    }
+
+    @Override
+    public Integer studentState1(Integer xh) {
+        return relistMapper.studentState1(xh);
+    }
+
+    @Override
+    public Integer studentState0(Integer xh) {
+        return relistMapper.studentState0(xh);
+    }
+
+    @Override
+    public Integer studentSign0(Integer kth, Integer gh, Integer xh) {
+        return relistMapper.studentSign0(kth,gh,xh);
     }
 
 

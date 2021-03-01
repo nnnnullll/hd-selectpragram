@@ -4,28 +4,30 @@ import com.example.demo.pojo.Relist;
 
 import com.example.demo.pojo.Teacher;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface RelistMapper {
-    @Select("select yxid,ktm,ktxz,ktly,xm,xkrs,xbrs from " +
-            "(select yxid,xm,prepick.gh from prepick,teacher where prepick.gh=teacher.gh) a," +
-            "(select ktm,ktxz,ktly,xbrs,prepick.gh from prepick,title where prepick.kth=title.kth and prepick.gh=title.gh) b," +
-            "(select count(c.xh) xkrs from prepick c,prepick d where c.kth=d.kth) e where a.gh=b.gh ORDER BY yxid desc")
-     List<Relist> getRelist();
-//    static List<Relist> getRelist(){
-//        return RelistMapper.getRelist();
-//    }
 
+    @Select("select (@i:=@i+1)xuhao,a.kth kth,ktm,ktxz,ktly,c.gh gh,c.xm xm,xbrs,b.xkrs xkrs from (select * from title where zt=1 and sc=0 ) a,(select @i:=0)p,(select title.kth kth,count(prepick.xh) xkrs from title left join prepick on title.kth=prepick.kth group by title.kth) b,(select kth,teacher.gh gh,xm from title,teacher where title.gh=teacher.gh) c where a.kth=b.kth and a.kth=c.kth order by a.kth asc")
+    List<Relist> getRelist();
 
-    @Update("update prepick set xh=#{xh} where yxid=#{yxid}")
-    void updateStudent(@Param("xh") Integer xh, @Param("yxid") Integer yxid);
+    @Select("select kth from prepick where xh=#{xh}")
+    Integer getMyselect(@Param("xh") Integer xh);
+
+    @Insert("insert into prepick (kth,gh,xh) values(#{kth}, #{gh}, #{xh});")
+    Integer studentSign1(@Param("kth") Integer kth,@Param("gh") Integer gh, @Param("xh") Integer xh);
+
+    @Update("update `student` set `student`.xz=1  where `student`.xh=#{xh}")
+    Integer studentState1(@Param("xh") Integer xh);
+
+    @Update("update `student` set `student`.xz=0  where `student`.xh=#{xh}")
+    Integer studentState0(@Param("xh") Integer xh);
+
+    @Delete("delete from `prepick` where `prepick`.kth=#{kth} and `prepick`.gh=#{gh} and `prepick`.xh=#{xh}")
+    Integer studentSign0(@Param("kth") Integer kth,@Param("gh") Integer gh, @Param("xh") Integer xh);
 
    
 

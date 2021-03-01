@@ -7,6 +7,15 @@ import java.util.List;
 public interface PreregistService {
     List<Relist> getRelist();
 
-    //学生选择
-    void updateStudent(Integer xh,Integer yxid);
+    Integer getMyselect(Integer xh);
+
+    //    学生选择
+    Integer studentSign1(Integer kth, Integer gh, Integer xh);
+
+    Integer studentState1(Integer xh);
+
+    //    学生取消
+    Integer studentState0(Integer xh);
+
+    Integer studentSign0(Integer kth, Integer gh, Integer xh);
 }

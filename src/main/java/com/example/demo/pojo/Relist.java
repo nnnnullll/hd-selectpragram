@@ -1,27 +1,33 @@
 package com.example.demo.pojo;
 
 public class Relist {
-    private int yxid;//  预选号--序号
+    private int xuhao;// 展示的序号
+    private int kth;
     private String ktm;//  课题名
     private String ktxz;//  课题性质
     private String ktly;//  课题来源
+    private int gh;
     private String xm;//  指导老师
     private int xbrs;// 限报人数
     private int xkrs;//  选课人数
 
-    public Relist(int yxid, String ktm, String ktxz, String ktly, String xm, int xbrs, int xkrs) {
-        this.yxid = yxid;
+    public Relist(int xuhao,int kth, String ktm, String ktxz, String ktly, int gh,String xm, int xbrs, int xkrs) {
+        this.xuhao=xuhao;
+        this.kth = kth;
         this.ktm = ktm;
         this.ktxz = ktxz;
         this.ktly = ktly;
+        this.gh=gh;
         this.xm = xm;
         this.xbrs = xbrs;
         this.xkrs = xkrs;
     }
 
-    public int getYxid() {
-        return yxid;
+    public int getXuhao() {
+        return xuhao;
     }
+
+    public int getKth() { return kth; }
 
     public String getKtm() {
         return ktm;
@@ -33,6 +39,10 @@ public class Relist {
 
     public String getKtly() {
         return ktly;
+    }
+
+    public int getGh() {
+        return gh;
     }
 
     public String getXm() {
@@ -47,12 +57,15 @@ public class Relist {
         return xkrs;
     }
 
-    public void setXkrs(int xkrs) {
-        this.xkrs = xkrs;
+
+    public void setXuhao(int xuhao) {
+        this.xuhao = xuhao;
     }
 
-    public void setYxid(int yxid) {
-        this.yxid = yxid;
+    public void setKth(int kth) { this.kth = kth; }
+
+    public void setXkrs(int xkrs) {
+        this.xkrs = xkrs;
     }
 
     public void setKtm(String ktm) {
@@ -67,6 +80,10 @@ public class Relist {
         this.ktly = ktly;
     }
 
+    public void setGh(int gh) {
+        this.gh = gh;
+    }
+
     public void setXm(String xm) {
         this.xm = xm;
     }
@@ -74,6 +91,5 @@ public class Relist {
     public void setXbrs(int xbrs) {
         this.xbrs = xbrs;
     }
-
 
 }

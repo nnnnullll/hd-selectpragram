@@ -17,13 +17,40 @@ public class PreregistController {
     public List<Relist> getRelist() {
         return preregistService.getRelist();
     }
-    // http://localhost:8010/addnote?dx=学生&bt=测试标题&nr=测试内容&rq=2000-01-02
 
-    @PostMapping("/studentSign")
-    public Integer studentSign(
-            @RequestParam(value = "xh") Integer xh,
-            @RequestParam(value = "yxid") Integer yxid){
-         preregistService.updateStudent(xh,yxid);
-         return 1;
+    @PostMapping("/getmyselect")
+    public Integer getMyselect(@RequestParam(value = "xh") Integer xh) {
+        return preregistService.getMyselect(xh);
+    }
+
+
+    //报名，设置状态
+    @PostMapping("/studentSign1")
+    public Integer studentSign1(
+            @RequestParam(value = "kth") Integer kth,
+            @RequestParam(value = "gh") Integer gh,
+            @RequestParam(value = "xh") Integer xh){
+        return preregistService.studentSign1(kth,gh,xh);
+    }
+
+    @PostMapping("/studentState1")
+    public Integer studentState1(
+            @RequestParam(value = "xh") Integer xh){
+        return preregistService.studentState1(xh);
+    }
+
+    //取消报名，恢复状态
+    @PostMapping("/studentSign0")
+    public Integer studentSign0(
+            @RequestParam(value = "kth") Integer kth,
+            @RequestParam(value = "gh") Integer gh,
+            @RequestParam(value = "xh") Integer xh){
+        return preregistService.studentSign0(kth,gh,xh);
+    }
+
+    @PostMapping("/studentState0")
+    public Integer studentState0(
+            @RequestParam(value = "xh") Integer xh){
+        return preregistService.studentState0(xh);
     }
 }
