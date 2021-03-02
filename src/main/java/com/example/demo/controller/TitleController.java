@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class TitleController {
@@ -26,7 +28,7 @@ public class TitleController {
         } catch (Exception e) {
             return 0;
         }
-        
+
     }
     @PostMapping("/getpreTitleidByxh")
     public Integer getpreTitleidByxh(@RequestParam(value = "xh") Integer xh) {
@@ -35,7 +37,7 @@ public class TitleController {
         } catch (Exception e) {
             return 0;
         }
-        
+
     }
     @PostMapping("/gettitlebygh")
     public Title[] getTitleBygh(@RequestParam(value = "gh") Integer gh) {
@@ -77,4 +79,24 @@ public class TitleController {
         @RequestParam(value = "fbsj") String fbsj){
         return titleService.upTitle(kth,xbrs, ktm, ktjs, ktlb, ktxz, ktly, sfxkt, fbsj);
     }
+
+    @PostMapping("/getalltitles")
+    public List<Title> getAllTitles(){
+        return titleService.getAllTitles();
+    }
+
+    @PostMapping("/settitlestate1")
+    public Integer titleState1(@RequestParam(value = "kth") Integer kth){
+        return titleService.titleState1(kth);
+    }
+    @PostMapping("/settitlestate3")
+    public Integer titleState3(@RequestParam(value = "kth") Integer kth){
+        return titleService.titleState3(kth);
+    }
+    @PostMapping("/settitlestate2")
+    public Integer titleState2(@RequestParam(value = "kth") Integer kth){
+        return titleService.titleState2(kth);
+    }
+
+
 }

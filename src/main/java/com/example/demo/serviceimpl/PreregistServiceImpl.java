@@ -44,5 +44,10 @@ public class PreregistServiceImpl implements PreregistService {
         return relistMapper.studentSign0(kth,gh,xh);
     }
 
+    @Override
+    public Integer studentState2(Integer xh) {
+        return relistMapper.studentState2(xh);
+    }
+
 
 }

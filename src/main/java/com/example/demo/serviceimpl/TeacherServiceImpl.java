@@ -1,15 +1,20 @@
 package com.example.demo.serviceimpl;
 
+import com.example.demo.mapper.LastPickMapper;
 import com.example.demo.mapper.TeacherMapper;
-import com.example.demo.pojo.Teacher;
+import com.example.demo.pojo.*;
 import com.example.demo.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     TeacherMapper teacherMapper;
+    LastPickMapper lastPickMapper;
     @Override
     public Teacher getTeacherInfoByName(String yhm) {
         return  teacherMapper.getTeacherInfoByName(yhm);
@@ -27,5 +32,6 @@ public class TeacherServiceImpl implements TeacherService {
     public void resetpwd (Integer gh,String mm){
         teacherMapper.resetpwd(gh,mm);
     }
+
 
 }

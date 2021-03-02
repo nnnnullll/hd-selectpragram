@@ -2,10 +2,13 @@ package com.example.demo.mapper;
 
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
+import com.example.demo.pojo.Title;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface TeacherMapper {
@@ -22,4 +25,6 @@ public interface TeacherMapper {
                           @Param("szyjs")String szyjs,@Param("bgsdh")String bgsdh,@Param("bgsdz")String bgsdz);
     @Update("update teacher set mm=#{mm} where gh=#{gh}")
     void resetpwd (@Param("gh")Integer gh,@Param("mm")String mm);
+
+
 }

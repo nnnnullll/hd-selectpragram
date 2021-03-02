@@ -29,6 +29,7 @@ public interface RelistMapper {
     @Delete("delete from `prepick` where `prepick`.kth=#{kth} and `prepick`.gh=#{gh} and `prepick`.xh=#{xh}")
     Integer studentSign0(@Param("kth") Integer kth,@Param("gh") Integer gh, @Param("xh") Integer xh);
 
-   
+    @Update("update `student` set `student`.xz=2  where `student`.xh=#{xh}")
+    Integer studentState2(@Param("xh") Integer xh);
 
 }

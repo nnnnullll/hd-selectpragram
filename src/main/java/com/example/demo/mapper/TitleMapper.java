@@ -29,46 +29,59 @@ public interface TitleMapper {
     List<UnSelKt> getUnselectedTitle();
 
     @Update("update title set zt=2 where kth=#{kth} and sc=0")
-    void resetzt (@Param("kth")Integer kth);
+    void resetzt(@Param("kth") Integer kth);
 
-    // 通过工号找审核前的课题 
+    // 通过工号找审核前的课题
     @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=0 ORDER BY fbsj DESC")
     Title[] getTitleBygh(@Param("gh") Integer gh);
-     // 通过工号找审核不通过的课题 
+
+    // 通过工号找审核不通过的课题
     @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=3 ORDER BY fbsj DESC")
     Title[] getBadTitleBygh(@Param("gh") Integer gh);
+
+    //通过工号找审核通过，可以被选择的课题
+    @Select("SELECT * FROM title where sc=0 AND gh=#{gh} AND zt=1 ORDER BY fbsj DESC")
+    Title[] getTitleByGh(@Param("gh") Integer gh);
 
     @Update("update `title` set `title`.sc=1  where `title`.kth=#{kth}")
     Integer deletekt(@Param("kth") Integer kth);
 
     @Update("update `title` set xbrs=#{xbrs},ktm=#{ktm},ktjs=#{ktjs},ktlb=#{ktlb},ktxz=#{ktxz},ktly=#{ktly},sfxkt=#{sfxkt},fbsj=#{fbsj} where `title`.kth=#{kth} ")
     Integer upTitle(
-        @Param("kth") Integer kth,
-        @Param("xbrs") Integer xbrs,
-        @Param("ktm") String ktm,
-        @Param("ktjs") String ktjs,
-        @Param("ktlb") String ktlb,
-        @Param("ktxz") String ktxz,
-        @Param("ktly") String ktly,
-        @Param("sfxkt") Integer sfxkt,
-        @Param("fbsj") String fbsj);
+            @Param("kth") Integer kth,
+            @Param("xbrs") Integer xbrs,
+            @Param("ktm") String ktm,
+            @Param("ktjs") String ktjs,
+            @Param("ktlb") String ktlb,
+            @Param("ktxz") String ktxz,
+            @Param("ktly") String ktly,
+            @Param("sfxkt") Integer sfxkt,
+            @Param("fbsj") String fbsj);
 
     @Insert("INSERT INTO `title` (yxh,gh,xbrs,ktm,ktjs,ktlb,ktxz,ktly,sfxkt,zt,fbsj,sc) VALUES ( #{yxh}, #{gh}, #{xbrs},#{ktm},#{ktjs},#{ktlb},#{ktxz},#{ktly},#{sfxkt},0,#{fbsj}, 0) ")
     Integer addTitle(
-        @Param("yxh") Integer yxh,
-        @Param("gh") Integer gh,
-        @Param("xbrs") Integer xbrs,
-        @Param("ktm") String ktm,
-        @Param("ktjs") String ktjs,
-        @Param("ktlb") String ktlb,
-        @Param("ktxz") String ktxz,
-        @Param("ktly") String ktly,
-        @Param("sfxkt") Integer sfxkt,
-        @Param("fbsj") String fbsj);
+            @Param("yxh") Integer yxh,
+            @Param("gh") Integer gh,
+            @Param("xbrs") Integer xbrs,
+            @Param("ktm") String ktm,
+            @Param("ktjs") String ktjs,
+            @Param("ktlb") String ktlb,
+            @Param("ktxz") String ktxz,
+            @Param("ktly") String ktly,
+            @Param("sfxkt") Integer sfxkt,
+            @Param("fbsj") String fbsj);
 
-    
+    @Select("select * from `title` where `title`.zt=0")
+    List<Title> getAllTitles();
 
-    
+    @Update("update `title` set `title`.zt=1 where `title`.kth=#{kth}")
+    Integer titleState1(@Param("kth") Integer kth);
+
+    @Update("update `title` set `title`.zt=3 where `title`.kth=#{kth}")
+    Integer titleState3(@Param("kth") Integer kth);
+
+    @Update("update `title` set `title`.zt=2 where `title`.kth=#{kth}")
+    Integer titleState2(@Param("kth") Integer kth);
 
 }
 

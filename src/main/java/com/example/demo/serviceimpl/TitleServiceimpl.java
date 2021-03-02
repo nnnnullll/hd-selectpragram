@@ -9,6 +9,8 @@ import com.example.demo.pojo.UnSelKt;
 import com.example.demo.service.TitleService;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +59,7 @@ public class TitleServiceimpl implements TitleService{
     public Title[] getBadTitleBygh(Integer gh){
         return titleMapper.getBadTitleBygh(gh);
     }
-    
+
     @Override
     public Integer deletekt(Integer kth){
         return titleMapper.deletekt(kth);
@@ -69,5 +71,23 @@ public class TitleServiceimpl implements TitleService{
     @Override
     public Integer getpreTitleidByxh(Integer xh){
         return titleMapper.getpreTitleidByxh(xh);
+    }
+
+    @Override
+    public List<Title> getAllTitles() {
+        return titleMapper.getAllTitles();
+    }
+    @Override
+    public Integer titleState1(Integer kth){
+        return titleMapper.titleState1(kth);
+    }
+    @Override
+    public Integer titleState3(Integer kth){
+        return titleMapper.titleState3(kth);
+    }
+
+    @Override
+    public Integer titleState2(Integer kth) {
+        return titleMapper.titleState2(kth);
     }
 }

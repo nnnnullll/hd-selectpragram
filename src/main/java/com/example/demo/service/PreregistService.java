@@ -18,4 +18,7 @@ public interface PreregistService {
     Integer studentState0(Integer xh);
 
     Integer studentSign0(Integer kth, Integer gh, Integer xh);
+
+    //   学生进入最终表
+    Integer studentState2(Integer xh);
 }
