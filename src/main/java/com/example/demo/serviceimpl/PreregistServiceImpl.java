@@ -50,8 +50,8 @@ public class PreregistServiceImpl implements PreregistService {
     }
 
     @Override
-    public boolean askXZ1(Integer xh) {
-        return relistMapper.askXZ1(xh);
+    public Integer getXZ1(Integer xh) {
+        return relistMapper.getXZ1(xh);
     }
 
 

@@ -22,5 +22,5 @@ public interface PreregistService {
     //   学生进入最终表
     Integer studentState2(Integer xh);
 
-    boolean askXZ1(Integer xh);
+    Integer getXZ1(Integer xh);
 }
