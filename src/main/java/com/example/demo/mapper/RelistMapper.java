@@ -32,4 +32,7 @@ public interface RelistMapper {
     @Update("update `student` set `student`.xz=2  where `student`.xh=#{xh}")
     Integer studentState2(@Param("xh") Integer xh);
 
+    @Select("select xz=1 from student where xh=#{xh} and cz=1")
+    boolean askXZ1(@Param("xh") Integer xh);
+
 }

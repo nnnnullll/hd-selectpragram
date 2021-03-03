@@ -59,4 +59,9 @@ public class PreregistController {
             @RequestParam(value = "xh") Integer xh){
         return preregistService.studentState2(xh);
     }
+
+    @PostMapping("/isxz1")
+    public boolean askXZ1(@RequestParam(value = "xh") Integer xh){
+        return preregistService.askXZ1(xh);
+    }
 }

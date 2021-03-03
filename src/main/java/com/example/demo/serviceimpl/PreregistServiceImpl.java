@@ -49,5 +49,10 @@ public class PreregistServiceImpl implements PreregistService {
         return relistMapper.studentState2(xh);
     }
 
+    @Override
+    public boolean askXZ1(Integer xh) {
+        return relistMapper.askXZ1(xh);
+    }
+
 
 }
